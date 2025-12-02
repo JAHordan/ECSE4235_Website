@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint 1 – PARMCO System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+    <div class="container">
+        <a href="index.html" class="logo">PARMCO System</a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="checkpoint1.html" class="active">Checkpoint 1</a></li>
+            <li><a href="checkpoint2.html">Checkpoint 2</a></li>
+            <li><a href="checkpoint3.html">Checkpoint 3</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- GRADE SUMMARY -->
+    <section class="card">
+        <h2>📊 Checkpoint 1 – Grade Summary</h2>
+        <p><strong>Final Grade:</strong> <span style="color: var(--uga-red); font-weight: 700;">87.5%</span></p>
+
+        <h3>Rubric Breakdown & Feedback</h3>
+
+        <ul>
+            <li><strong>Strategy Team, Phone, AI (5%)</strong> — Scored 1.0</li>
+            <li><strong>Strategy AI Interactions Plan (20%)</strong> — Scored 1.0</li>
+            <li><strong>Strategy Schedules (15%)</strong> — Scored 1.0</li>
+            <li><strong>Motor Schematic & Document (50%)</strong> — Scored 0.75  
+                <br><em>Feedback:</em>  
+                <span style="color:#ccc;">The motor is always on since it is directly connected to 12V and GND.</span>
+            </li>
+            <li><strong>Logistics (5%)</strong> — Scored 1.0</li>
+            <li><strong>Professionalism (5%)</strong> — Scored 1.0</li>
+        </ul>
+
+        <p style="margin-top:1rem; font-style:italic;">
+            (Values taken directly from the instructor rubric.)  
+        </p>
+    </section>
+
+    <!-- CHECKPOINT CONTENT -->
+    <section class="card">
+        <!-- Buttons row -->
+        <div class="cp-buttons">
+            <a href="index.html" class="return-btn">← Return to Homepage</a>
+
+            <!-- TODO: replace href with your actual CP2 Google Drive PDF link -->
+            <a href="https://drive.google.com/file/d/1yQ_97JXnecqQl7itW0rdFp9zCxKpcySy/view?usp=sharing"
+                class="return-btn"
+                target="_blank"
+                rel="noopener noreferrer">
+                📄 View CP1 PDF
+            </a>
+        </div>
+
+        <br>
+
+        <h2>📄 Checkpoint 1 Submission</h2>
+
+        <h3>1. Team Information</h3>
+        <p><strong>Group 3</strong>: Drew Lowry, Jordan Howard</p>
+        <p>Date Submitted: 10/7/2025</p>
+
+        <h3>Team Strategy</h3>
+        <p>
+            The project is being developed for the iOS platform, as both team members have iPhones 
+            and access to an Apple computer for Xcode development.  
+            The team will follow a multi-AI workflow using Google Gemini, ChatGPT, and Perplexity.  
+            These tools will jointly generate Swift/SwiftUI code for the mobile app, C/Assembly for 
+            the Raspberry Pi 4, and all hardware schematics. A continuous AI interaction log will be 
+            maintained to document development steps, generated code, and design decisions throughout the project.
+        </p>
+
+
+
+        <span class="small-break"></span>
+
+        <h4>Work Division</h4>
+        <ul>
+            <li>Drew Lowry — iOS App Interface, AI-guided SwiftUI development</li>
+            <li>Jordan Howard — Raspberry Pi code, hardware implementation, Bluetooth functionality</li>
+        </ul>
+
+        <span class="small-break"></span>
+
+        <h4>Schedule</h4>
+        <p>
+            Most development is planned for in-class work sessions; additional meetings will be scheduled as needed.
+        </p>
+
+        <br>
+
+        <h3>2. Preliminary Motor Schematic</h3>
+        <p>Below is the MOSFET-based motor control schematic included in the submission:</p>
+
+
+        <img src="website_images\cp1_motor_schecmantic.png" 
+            alt="Checkpoint 1 Motor Circuit Schematic" 
+            class="expandable-image"
+            onclick="openImageModal(this)">
+
+        <p class="center-caption">
+            Figure 1. Checkpoint 1 Motor Circuit Schematic. 
+        </p>
+
+
+        <br>
+
+        <h3>3. Setup Instructions</h3>
+        <ol style="margin-left: 1.5rem;">
+            <li>Power off the Raspberry Pi</li>
+            <li>Connect GPIO 17 → resistor → MOSFET gate</li>
+            <li>Connect MOSFET drain → +12V supply</li>
+            <li>Connect motor + → +12V supply</li>
+            <li>Connect motor – → MOSFET source</li>
+            <li>Add flyback diode across motor terminals</li>
+            <li>Ensure Raspberry Pi ground, MOSFET source, and 12V ground share a <strong>common ground</strong></li>
+        </ol>
+
+        <br>
+
+        <h3>4. Parts List</h3>
+        <ul>
+            <li>Raspberry Pi 4</li>
+            <li>IFRZ34 MOSFET</li>
+            <li>1–2 kΩ resistor</li>
+            <li>12V DC motor</li>
+            <li>Flyback diode</li>
+            <li>12V power supply</li>
+            <li>Dupont jumper wires</li>
+        </ul>
+
+
+
+    </section>
+
+</div>
+
+<script>
+  // Make all cards visible immediately on this page
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.card').forEach(card => {
+      card.classList.add('card-visible');
+    });
+  });
+</script>
+
+<script>
+function openImageModal(img) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    modal.classList.add('active');
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closeImageModal();
+    }
+});
+</script>
+
+<!-- Modal for expanded image -->
+<div id="imageModal" class="image-modal" onclick="closeImageModal()">
+    <span class="image-modal-close">&times;</span>
+    <img id="modalImage" src="" alt="">
+</div>
+</body>
+</html>

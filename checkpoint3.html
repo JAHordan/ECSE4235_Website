@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint 3 – PARMCO System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">PARMCO System</a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="checkpoint1.html">Checkpoint 1</a></li>
+                <li><a href="checkpoint2.html">Checkpoint 2</a></li>
+                <li><a href="checkpoint3.html" class="active">Checkpoint 3</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- GRADE SUMMARY -->
+        <section class="card card-visible">
+            <h2>📊 Checkpoint 3 – Grade Summary</h2>
+            <p>
+                <strong>Final Grade:</strong>
+                <span style="color: var(--uga-red); font-weight: 700;">86.5%</span>
+            </p>
+
+            <h3>Rubric Breakdown & Feedback</h3>
+            <ul class="bullet-list">
+                <li>
+                    <strong>In-Class CP (35%)</strong> — Scored <strong>1.0</strong><br>
+                    <em>Feedback:</em>
+                    <span style="color:#ccc;">
+                        Good start, use some creativity. Also issue at the end where the schematic covers the team images.
+                    </span>
+                </li>
+                <li>
+                    <strong>GitHub or Website for Project (20%)</strong> — Scored <strong>0.75</strong><br>
+                    <em>Feedback:</em>
+                    <span style="color:#ccc;">
+                        Good start, but more creativity and layout polish are encouraged.
+                    </span>
+                </li>
+                <li>
+                    <strong>AI-Generated Documentation (15%)</strong> — Scored <strong>0.70</strong><br>
+                    <em>Feedback:</em>
+                    <span style="color:#ccc;">
+                        Good job covering libraries, but AI also needs to document the full software system and how all code works together.
+                    </span>
+                </li>
+                <li>
+                    <strong>Code (10%)</strong> — Scored <strong>0.75</strong><br>
+                    <em>Feedback:</em>
+                    <span style="color:#ccc;">
+                        Code needs more comments throughout.
+                    </span>
+                </li>
+                <li><strong>Human-Written Documentation (15%)</strong> — Scored <strong>0.90</strong></li>
+                <li><strong>Professionalism (5%)</strong> — Scored <strong>1.0</strong></li>
+            </ul>
+
+            <p style="margin-top:1rem; font-style:italic;">
+                (Values taken directly from the instructor rubric.) 
+            </p>
+        </section>
+
+        <!-- CHECKPOINT 3 CONTENT -->
+        <section class="card card-visible">
+            <!-- Buttons row -->
+            <div class="cp-buttons">
+                <a href="index.html" class="return-btn">← Return to Homepage</a>
+
+                <!-- Replace href with your actual Google Drive link for CP3 -->
+                <a href="https://drive.google.com/file/d/1JnalN0zLxQMyhFrwiNtVwQBRBrJ1VEI_/view?usp=sharing"
+                   class="return-btn"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    📄 View CP3 PDF
+                </a>
+            </div>
+
+            <h2>📄 Checkpoint 3 Submission</h2>
+
+            <h3>Team & Roles</h3>
+            <p><strong>Group 3:</strong> Drew Lowry &amp; Jordan Howard</p>
+            <p>Date Submitted: 11/13/2025</p>
+
+            <span class="small-break"></span>
+
+            <ul class="bullet-list">
+                <li><strong>Jordan:</strong> Hardware website design and layout</li>
+                <li><strong>Drew:</strong> App interface and Bluetooth connection</li>
+                <li>Both team members worked equally on the documentation.</li>
+            </ul>
+
+            <span class="small-break"></span>
+
+
+            <h3>1. App Motor Control & Bluetooth Challenges</h3>
+            <p>
+                For Checkpoint 3, the team’s primary focus was getting reliable motor control from the
+                mobile app through Bluetooth. Initially, all Bluetooth work was done in C, and the team
+                successfully connected to the Raspberry Pi. However, none of the motor control commands
+                could be transmitted reliably from the phone to the Pi within the C-only solution.
+            </p>
+
+            <span class="small-break"></span>
+
+            <p>
+                After running into repeated issues, the team asked Dr. Herring on November 4, 2025,
+                whether Python could be used for the Bluetooth connection while keeping the rest of the
+                project in C. The initial email response allowed the use of Python on the Raspberry Pi for
+                Bluetooth, with the constraint that the phone and RP4 must be able to reconnect after
+                forgetting the device. A later follow-up email on November 6, 2025, clarified that if
+                Bluetooth remained in Python and the rest of the embedded code stayed in C, the project
+                would not receive full credit; the professor emphasized that other groups had achieved a
+                C-based setup. 
+            </p>
+
+            <span class="small-break"></span>
+
+            <p>
+                This put the team at a disadvantage because those groups used Android/Windows, while this
+                team used an iPhone/Mac stack. By talking with another iOS/Mac group (Gaelan &amp; Blake),
+                they confirmed that the C-based approach was also failing there. The key technical
+                difference turned out to be the underlying Bluetooth profiles: other teams relied on
+                RFCOMM/Serial Port Profile, which is not supported for third-party iOS apps. 
+            </p>
+
+            <span class="small-break"></span>
+
+            <h4>RFCOMM vs BLE GATT</h4>
+            <p>
+                Through extensive AI-assisted research and experimentation, the team verified that
+                RFCOMM is simple to implement but incompatible with standard iOS apps, while BLE
+                GATT is more complex but fully supported and is the industry standard for BLE. In the
+                CP3 report:
+            </p>
+
+            <ul class="bullet-list">
+                <li>
+                    <strong>Figure 1</strong> highlights the conceptual differences between BLE GATT and RFCOMM.
+                </li>
+                <li>
+                    <strong>Figure 2</strong> compares how an Android phone can easily use RFCOMM, while iOS
+                    requires GATT for third-party apps.
+                </li>
+                <li>
+                    <strong>Figure 3</strong> contrasts the code complexity: a short RFCOMM socket sequence versus
+                    a multi-step BLE GATT flow involving services, characteristics, BlueZ daemons, and
+                    D-Bus messaging.
+                </li>
+            </ul>
+
+            <img src="website_images\key_differences_ble_rfcomm.png" 
+                alt="Differences Between RFComm & BLE GATT" 
+                class="expandable-image"
+                onclick="openImageModal(this)">
+
+            <p class="center-caption">
+                Figure 1. Key Differences from BLE GATT and RFCOMM
+            </p>
+
+            <img src="website_images\differences_connect_from_phone.png" 
+                alt="Differences Between RFComm & BLE GATT" 
+                class="expandable-image"
+                onclick="openImageModal(this)">
+
+            <p class="center-caption">
+                Figure 2. Key Differences from Phone Connection
+            </p>
+
+            <img src="website_images\differences_code_compare.png" 
+                alt="Code Comparison" 
+                class="expandable-image"
+                onclick="openImageModal(this)">
+
+            <p class="center-caption">
+                Figure 3. Code Comparison
+            </p>
+
+
+            <span class="small-break"></span>
+
+            <p>
+                Confirming that RFCOMM was not viable on iOS was a key milestone. It validated the
+                team’s concerns that they were being asked to solve a significantly harder problem than
+                groups using Android/Windows, and it explained why a naive C+RFCOMM port would
+                never work on their platform. 
+            </p>
+
+            <span class="small-break"></span>
+
+            <p>
+                Despite these constraints, the team persisted—iterating with multiple AIs, testing
+                alternative code paths, and documenting the incompatibilities. This checkpoint represents
+                the turning point where the team began narrowing the solution toward a BLE-centric
+                design while still honoring the project’s C-based requirements as much as possible.
+            </p>
+
+            <h3>2. Website Development</h3>
+            <p>
+                In parallel with the Bluetooth work, the team continued improving the project website that
+                showcases the PARMCO system. The initial HTML structure was generated with
+                <strong>Google Gemini</strong> after feeding it the Final Project directions plus the Checkpoint 1 and
+                Checkpoint 2 documentation. From there, <strong>Claude</strong> was used to refine styling, layout,
+                and overall aesthetics, giving the site a more polished, professional appearance. 
+            </p>
+
+            <img src="website_images\initial_website.png" 
+                alt="Initial Website" 
+                class="expandable-image"
+                onclick="openImageModal(this)">
+
+            <p class="center-caption">
+                Figure 4. Initial Website
+            </p>
+
+
+            <span class="small-break"></span>
+
+            <p>
+                The CP3 report’s <strong>Figure 4</strong> shows the main homepage view, including the hero section,
+                navigation bar, and the early version of the project overview content embedded on the page.
+            </p>
+
+            <h3>3. AI Interaction</h3>
+            <p>
+                By Checkpoint 3, the team’s multi-AI workflow had shifted strongly toward using
+                <strong>Claude</strong> as the primary assistant. Early in the semester, the plan was to balance
+                Gemini, ChatGPT, Perplexity, and Claude. However, as the work became more complex,
+                Claude consistently produced the most accurate and debuggable code for:
+            </p>
+
+            <ul class="bullet-list">
+                <li>Bluetooth experiments and code snippets for BLE GATT</li>
+                <li>Motor-drive logic and C-based control structures</li>
+                <li>Refinements to the iOS app UI and behavior</li>
+                <li>Styling improvements and structural changes for the project website</li>
+            </ul>
+
+            <span class="small-break"></span>
+
+            <p>
+                Gemini remained most useful for the initial HTML skeleton of the website, while Claude
+                handled the majority of subsequent code refinement. The team notes that one recurring
+                challenge was that AIs would confidently propose solutions that were incompatible with the
+                specific iOS/Mac + Raspberry Pi hardware configuration; this forced the team to
+                cross-check answers, test prototypes, and reason beyond the AI output rather than blindly
+                trusting it. 
+            </p>
+
+            <span class="small-break"></span>
+
+            <p>
+                Overall, Checkpoint 3 documents a phase where technical difficulty, platform limitations,
+                and grading constraints collided—but also where the team’s persistence, documentation
+                quality, and website progress positioned them for the final integration in later checkpoints.
+            </p>
+        </section>
+    </div>
+
+    <!-- Immediately show cards on this page -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.add('card-visible');
+            });
+        });
+    </script>
+
+    <!-- Open Image -->
+    <script>
+    function openImageModal(img) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('active');
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+    </script>
+
+    <!-- Modal for expanded image -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="image-modal-close">&times;</span>
+        <img id="modalImage" src="" alt="">
+    </div>
+</body>
+</body>
+</html>

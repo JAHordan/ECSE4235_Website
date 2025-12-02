@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic document metadata -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARMCO - Precision Adaptive RPM Motor Control System</title>
+
+    <!-- External stylesheet for global styles and layout -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== SITE HEADER & NAVIGATION ===== -->
+    <header>
+        <nav>
+            <div class="container">
+                <!-- Site logo / title, links back to homepage -->
+                <a href="index.html" class="logo">PARMCO System</a>
+
+                <!-- Top-level navigation to checkpoint pages -->
+                <ul class="nav-links">
+                    <li><a href="checkpoint1.html">Checkpoint 1</a></li>
+                    <li><a href="checkpoint2.html">Checkpoint 2</a></li>
+                    <li><a href="checkpoint3.html">Checkpoint 3</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main page content wrapper -->
+    <div class="container">
+
+        <!-- ===== HERO SECTION ===== -->
+        <section class="hero">
+            <div class="hero-content">
+                <!-- Animated orbit background element (styled in CSS) -->
+                <div class="hero-orbit"></div>
+
+                <!-- Main title and subtitle -->
+                <h1 class="hero-title">PARMCO System</h1>
+                <p class="subtitle">Precision Adaptive RPM Motor Control System</p>
+
+                <!-- Key feature badges below the title -->
+                <div class="hero-badges">
+                    <span class="badge">🔧 Raspberry Pi 4</span>
+                    <span class="badge">📱 Bluetooth Control</span>
+                    <span class="badge">🤖 AI-Developed</span>
+                    <span class="badge">🔄 Real-time Feedback</span>
+                </div>
+            </div>
+        </section>
+
+        <main>
+            <!-- ===== PROJECT OVERVIEW CARD ===== -->
+            <section id="overview" class="card">
+                <h2>📋 Project Overview</h2>
+                <p>
+                    The PARMCO system is a standalone motor control solution that seamlessly integrates
+                    mobile app control with Raspberry Pi 4 hardware to provide precise DC motor management.
+                    Developed entirely using AI assistance, this system operates independently without requiring
+                    internet connectivity or external AI support during runtime.
+                </p>
+            </section>
+
+            <!-- ===== SYSTEM FEATURES CARD ===== -->
+            <section id="features" class="card">
+                <h2>🚀 System Features</h2>
+
+                <!-- Responsive grid of feature cards -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">📱</div>
+                        <h4>iOS Mobile App</h4>
+                        <p>
+                            User-friendly interface with comprehensive motor control options including rotation
+                            direction, speed adjustment, and RPM monitoring.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔄</div>
+                        <h4>Bidirectional Control</h4>
+                        <p>
+                            Support for both clockwise and counterclockwise rotation with smooth transitions and
+                            precise speed control.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h4>Real-time Feedback</h4>
+                        <p>
+                            Live RPM monitoring with instant feedback from motor to app, enabling precise control
+                            and monitoring.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">💾</div>
+                        <h4>Python Bluetooth</h4>
+                        <p>
+                            Persistent Bluetooth pairing that remembers devices for quick reconnection and seamless
+                            user experience.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== ARCHITECTURE CARD ===== -->
+            <section id="architecture" class="card">
+                <h2>🏗️ System Architecture</h2>
+
+                <!-- Diagram block showing flow from app → BLE → Pi → driver → motor -->
+                <div class="architecture-diagram">
+                    <h3>Component Communication Flow</h3>
+                    <div class="diagram-container">
+                        <div class="component-box">
+                            <div class="icon">📱</div>
+                            <h4>Mobile App</h4>
+                            <p>Control Interface</p>
+                        </div>
+                        <span class="arrow">⟷</span>
+                        <div class="component-box">
+                            <div class="icon">📡</div>
+                            <h4>Bluetooth</h4>
+                            <p>Wireless Link</p>
+                        </div>
+                        <span class="arrow">⟷</span>
+                        <div class="component-box">
+                            <div class="icon">🖥️</div>
+                            <h4>Raspberry Pi 4</h4>
+                            <p>Control Logic</p>
+                        </div>
+                        <span class="arrow">⟷</span>
+                        <div class="component-box">
+                            <div class="icon">⚡</div>
+                            <h4>MOSFET Driver</h4>
+                            <p>Power Control</p>
+                        </div>
+                        <span class="arrow">⟷</span>
+                        <div class="component-box">
+                            <div class="icon">⚙️</div>
+                            <h4>DC Motor</h4>
+                            <p>Actuator</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description of the three control modes -->
+                <h3>Control Modes</h3>
+                <div class="control-modes">
+                    <!-- Manual mode description -->
+                    <div class="mode-card">
+                        <h4>🎮 Manual Mode</h4>
+                        <ul>
+                            <li>Direct speed control via slider</li>
+                            <li>Instant response to user input</li>
+                            <li>Start/Stop functionality</li>
+                            <li>Direction control (CW/CCW)</li>
+                            <li>Real-time RPM display</li>
+                        </ul>
+                    </div>
+
+                    <!-- Automatic (setpoint-based) control description -->
+                    <div class="mode-card">
+                        <h4>🤖 Automatic Mode</h4>
+                        <ul>
+                            <li>RPM setpoint input</li>
+                            <li>Feedback control loop</li>
+                            <li>Automatic speed adjustment</li>
+                            <li>Error minimization</li>
+                            <li>Stable operation maintenance</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tilt-based control description -->
+                    <div class="mode-card">
+                        <h4>📐 Tilt Mode</h4>
+                        <ul>
+                            <li>Phone tilt angle mapped to motor RPM</li>
+                            <li>0° corresponds to 0 RPM</li>
+                            <li>75° corresponds to approximately 6500 RPM</li>
+                            <li>Intuitive, motion-based speed control</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== INTERACTIVE MOTOR CONTROL DEMO ===== -->
+            <section id="motor-demo" class="card motor-demo">
+                <h2>🎛 Interactive Motor Control Demo</h2>
+
+                <div class="motor-demo-layout">
+                    <!-- Visual motor representation (rotor + arrow) -->
+                    <div class="motor-visual">
+                        <div class="motor-ring">
+                            <!-- Rotor disc -->
+                            <div class="motor-rotor"></div>
+                            <!-- Rotating arrow aligned to the disc -->
+                            <div class="motor-arrow"></div>
+                        </div>
+                        <!-- Live RPM readout text -->
+                        <div class="rpm-readout">
+                            <span class="rpm-label">Simulated RPM</span>
+                            <span class="rpm-value" id="rpmValue">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Control pane: power, sliders, modes, direction, setpoint -->
+                    <div class="motor-controls">
+                        <!-- Power toggle group -->
+                        <div class="control-group">
+                            <span class="control-label">Power</span>
+                            <div class="power-toggle">
+                                <!-- ON/OFF button controlled by JavaScript -->
+                                <button type="button" id="powerBtn" class="power-btn active">ON</button>
+                            </div>
+                        </div>
+
+                        <!-- Manual speed slider -->
+                        <div class="control-group">
+                            <label for="rpmSlider">Speed Control</label>
+                            <input type="range" id="rpmSlider" min="0" max="100" value="0">
+                            <div class="control-hint">
+                                Drag to change target Duty Cycle (0–100%)
+                            </div>
+                        </div>
+
+                        <!-- Tilt angle slider for simulated tilt mode -->
+                        <div class="control-group">
+                            <label for="tiltSlider">Tilt Angle (Simulated)</label>
+                            <input type="range" id="tiltSlider" min="0" max="75" value="0">
+                            <div class="control-hint">
+                                0° → 0 RPM, 75° → ~6500 RPM (Tilt mode only)
+                            </div>
+                        </div>
+
+                        <!-- Mode + direction toggles in a row -->
+                        <div class="control-group control-row">
+                            <div>
+                                <span class="control-label">Mode</span>
+                                <div class="mode-toggle">
+                                    <!-- Mode buttons share class .mode-btn and differ by data-mode attribute -->
+                                    <button type="button" class="mode-btn active" data-mode="manual">Manual</button>
+                                    <button type="button" class="mode-btn" data-mode="auto">Auto</button>
+                                    <button type="button" class="mode-btn" data-mode="tilt">Tilt</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="control-label">Direction</span>
+                                <div class="direction-toggle">
+                                    <!-- Direction buttons: CW or CCW -->
+                                    <button type="button" class="dir-btn active" data-dir="cw">CW</button>
+                                    <button type="button" class="dir-btn" data-dir="ccw">CCW</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Setpoint controls for automatic mode -->
+                        <div class="control-group">
+                            <span class="control-label">Setpoint (Auto Mode)</span>
+                            <div class="setpoint-row">
+                                <!-- Live label for the current setpoint -->
+                                <span id="setpointLabel">3000 RPM</span>
+                                <!-- Increment / decrement buttons for setpoint -->
+                                <button type="button" id="setpointDown" class="setpoint-btn">−</button>
+                                <button type="button" id="setpointUp" class="setpoint-btn">+</button>
+                            </div>
+                            <div class="control-hint">
+                                In auto mode, the system eases toward this RPM.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== DEMO VIDEO SECTION (GOOGLE DRIVE EMBED) ===== -->
+            <section id="demo-video" class="card demo-video">
+                <h2>🎥 System Demo Video</h2>
+
+                <div class="demo-video-layout">
+                    <!-- Embedded Google Drive video preview -->
+                    <div class="demo-video-player">
+                        <iframe
+                            src="https://drive.google.com/file/d/1enlTHDvHi60u1brlwoYGniiKecZuNq8i/preview"
+                            allow="autoplay"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
+
+                    <!-- Supporting text explaining what the viewer sees -->
+                    <div class="demo-video-text">
+                        <h3>Real-Time Motor Control in Action</h3>
+                        <p>
+                            This short clip shows the PARMCO system controlling a DC motor in real time.
+                            The mobile app adjusts RPM and direction while the Raspberry Pi 4 executes the
+                            feedback control loop and updates the live RPM display.
+                        </p>
+                        <ul>
+                            <li>Raspberry Pi 4 running the motor control service</li>
+                            <li>Mobile app sending RPM commands over Bluetooth</li>
+                            <li>Live RPM response from the motor and driver circuit</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== SYSTEM REQUIREMENTS CARD ===== -->
+            <section class="card">
+                <h2>⚙️ Technical Specifications</h2>
+
+                <!-- System-level behavioral requirements -->
+                <div class="requirements">
+                    <h3>System Requirements</h3>
+                    <ul>
+                        <li>No internet dependency for operation</li>
+                        <li>No AI service dependency during runtime</li>
+                        <li>Persistent Bluetooth connection memory</li>
+                        <li>Automatic code execution on RP4 boot</li>
+                        <li>Safe "quiet" state on initialization</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ===== TEAM SECTION ===== -->
+            <section id="team" class="card">
+                <h2>👥 Project Team</h2>
+
+                <div class="team-section">
+                    <!-- Short intro above team cards -->
+                    <div class="team-intro">
+                        <p>
+                            This project is a collaborative effort between partners, leveraging AI tools
+                            to create a sophisticated motor control system.
+                        </p>
+                    </div>
+
+                    <!-- Two-column team layout -->
+                    <div class="team-members">
+
+                        <!-- Drew's profile block -->
+                        <div class="team-member">
+                            <!-- Avatar links to Drew's LinkedIn profile -->
+                            <a href="https://www.linkedin.com/in/drewlowry/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="avatar">
+                                <img src="website_images/drew_cropped_again.jpeg" alt="Profile photo of Drew Lowry">
+                            </a>
+
+                            <h4>Drew Lowry</h4>
+                            <p>Software Development & App Interface</p>
+
+                            <br>
+
+                            <!-- Bio with graduation, major, future plans -->
+                            <div class="bio">
+                                <p><strong>Graduation:</strong> Spring 2026</p>
+                                <p><strong>Major:</strong> Computer Engineering</p>
+                                <p>
+                                    <strong>Plans After Graduation:</strong><br>
+                                    Manufacturing Process Engineer<br>
+                                    Ball Corporation<br>
+                                    Tampa, FL<br>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Jordan's profile block -->
+                        <div class="team-member">
+                            <!-- Avatar links to Jordan's LinkedIn profile -->
+                            <a href="https://www.linkedin.com/in/jordan-howard-7ab25616b/"
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               class="avatar">
+                                <img src="website_images/2023 - Brick Wall_cropped.jpg" alt="Profile photo of Jordan Howard">
+                            </a>
+
+                            <h4>Jordan Howard</h4>
+                            <p>Hardware Integration & Circuit Design</p>
+
+                            <br>
+
+                            <!-- Bio for Jordan -->
+                            <div class="bio">
+                                <p><strong>Graduation:</strong> Spring 2026</p>
+                                <p><strong>Major:</strong> Computer Engineering</p>
+                                <p>
+                                    <strong>Plans After Graduation:</strong><br>
+                                    Hardware Development Engineer<br>
+                                    Amazon Leo<br>
+                                    Los Angeles, CA<br>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== AI TOOLS SECTION ===== -->
+            <section id="ai-tools" class="card">
+                <h2>🤖 AI Tools Used</h2>
+
+                <div class="ai-tools-intro">
+                    <p>
+                        This project was collaboratively developed with several AI systems, each specializing in a
+                        different aspect of the workflow.
+                    </p>
+                </div>
+
+                <!-- Grid of AI tools used in the project -->
+                <div class="ai-tools-grid">
+                    <!-- ChatGPT -->
+                    <div class="ai-tool">
+                        <!-- Logo is clickable and opens ChatGPT -->
+                        <a href="https://chat.openai.com"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="ai-logo chatgpt-logo">
+                            <img src="website_images/chatgpt_logo.png" alt="ChatGPT logo">
+                            <span>ChatGPT</span>
+                        </a>
+                        <h3>ChatGPT</h3>
+                        <p class="ai-role">Website Documentation & Content Structuring</p>
+                    </div>
+
+                    <!-- Claude -->
+                    <div class="ai-tool">
+                        <a href="https://claude.ai"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="ai-logo claude-logo">
+                            <img src="website_images/Claude_AI_symbol.svg.png" alt="Claude logo">
+                            <span>Claude</span>
+                        </a>
+                        <h3>Claude</h3>
+                        <p class="ai-role">Circuit Design, Motor Control Logic, Bluetooth Connection</p>
+                    </div>
+
+                    <!-- Gemini -->
+                    <div class="ai-tool">
+                        <a href="https://gemini.google.com"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="ai-logo gemini-logo">
+                            <img src="website_images/gemini-color.png" alt="Gemini logo">
+                            <span>Gemini</span>
+                        </a>
+                        <h3>Gemini</h3>
+                        <p class="ai-role">iOS App Development & Interface Concepts</p>
+                    </div>
+
+                    <!-- Perplexity -->
+                    <div class="ai-tool">
+                        <a href="https://www.perplexity.ai"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="ai-logo perplexity-logo">
+                            <img src="website_images/perplexity-color.png" alt="Perplexity logo">
+                            <span>Perplexity</span>
+                        </a>
+                        <h3>Perplexity</h3>
+                        <p class="ai-role">Secondary Verification & Cross-Checking Tool</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ===== DOCUMENTATION SUMMARY CARD ===== -->
+            <section class="card">
+                <h2>📚 Documentation</h2>
+                <h3>AI-Generated Resources</h3>
+                <p>This project leverages AI assistance for comprehensive documentation and implementation:</p>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li style="padding: 0.5rem 0;">📝 <strong>Circuit Design:</strong> Complete schematic and component selection guided by AI</li>
+                    <li style="padding: 0.5rem 0;">📖 <strong>"How It Works" Analysis:</strong> Detailed technical explanation of system operation</li>
+                    <li style="padding: 0.5rem 0;">💻 <strong>Code Generation:</strong> AI-assisted development of control algorithms</li>
+                    <li style="padding: 0.5rem 0;">🌐 <strong>GitHub Documentation:</strong> Professional project presentation and documentation</li>
+                    <li style="padding: 0.5rem 0;">📱 <strong>App Interface Design:</strong> User experience optimization with AI recommendations</li>
+                </ul>
+            </section>
+
+            <!-- ===== EXTERNAL PROJECT RESOURCES ===== -->
+            <section class="card">
+                <h2>🔗 Project Resources</h2>
+
+                <!-- Simple inline grid for four resource links -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                    <!-- GitHub repository -->
+                    <a href="https://github.com/Herring-UGAECSE-4235-F25/Group3/tree/master/FinalProject"
+                       style="background: linear-gradient(135deg, #000000 0%, #374151 100%);
+                              color: white; padding: 1rem; border-radius: 10px;
+                              text-decoration: none; text-align: center; display: block;">
+                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📦</div>
+                        <div>GitHub Repository</div>
+                    </a>
+
+                    <!-- Final report -->
+                    <a href="https://drive.google.com/file/d/1T_XN9tfeSjAg74CwbXnwcHvqUpkWb12Y/view?usp=sharing"
+                       style="background: linear-gradient(135deg, #ba0c2f 0%, #910021 100%);
+                              color: white; padding: 1rem; border-radius: 10px;
+                              text-decoration: none; text-align: center; display: block;">
+                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📄</div>
+                        <div>Final Report</div>
+                    </a>
+
+                    <!-- AI documentation -->
+                    <a href="https://drive.google.com/file/d/1ZJ4F0TXLR6CFbd6_IqSA86Rsi2cck584/view?usp=sharing"
+                       style="background: linear-gradient(135deg, #e5e7eb 0%, #6b7280 100%);
+                              color: #111827; padding: 1rem; border-radius: 10px;
+                              text-decoration: none; text-align: center; display: block;">
+                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🤖</div>
+                        <div>AI Documentation</div>
+                    </a>
+
+                    <!-- Demo video (redundant but convenient link) -->
+                    <a href="https://drive.google.com/file/d/1enlTHDvHi60u1brlwoYGniiKecZuNq8i/view?usp=sharing"
+                       style="background: linear-gradient(135deg, #ba0c2f 0%, #000000 100%);
+                              color: white; padding: 1rem; border-radius: 10px;
+                              text-decoration: none; text-align: center; display: block;">
+                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">🎥</div>
+                        <div>Demo Video</div>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ===== SITE FOOTER ===== -->
+    <footer>
+        <div class="container">
+            <p style="color: var(--text-light); margin-top: 1rem;">
+                © 2025 PARMCO System - AI - Assisted Development Project
+            </p>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-top: 0.5rem;">
+                Developed with AI assistance for educational purposes
+            </p>
+        </div>
+    </footer>
+
+    <!-- ===== SMOOTH SCROLLING SCRIPT FOR INTERNAL LINKS ===== -->
+    <script>
+        // Enable smooth scrolling for anchor links that target IDs on the same page
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // IntersectionObserver config for card fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                // When a card comes into view, fade and slide it in
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply animation behavior to every .card element
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+
+    <!-- ===== INTERACTIVE MOTOR DEMO SCRIPT ===== -->
+    <script>
+        // Self-invoking function to contain motor demo logic
+        (function () {
+            // Grab references to all relevant DOM elements
+            const rpmDisplay = document.getElementById('rpmValue');
+            const slider = document.getElementById('rpmSlider');
+            const tiltSlider = document.getElementById('tiltSlider');
+            const arrow = document.querySelector('.motor-arrow');
+            const modeButtons = document.querySelectorAll('.mode-btn');
+            const dirButtons = document.querySelectorAll('.dir-btn');
+            const setpointLabel = document.getElementById('setpointLabel');
+            const setpointUp = document.getElementById('setpointUp');
+            const setpointDown = document.getElementById('setpointDown');
+            const powerBtn = document.getElementById('powerBtn');
+
+            // Safety guard: if any critical element is missing, exit early
+            if (!rpmDisplay || !slider || !arrow || !powerBtn) return;
+
+            // Simulation state variables
+            let currentRPM = 0;      // current simulated RPM
+            let targetRPM = 0;       // target RPM we are easing toward
+            let direction = 1;       // 1 = CW, -1 = CCW rotation
+            let mode = 'manual';     // 'manual' | 'auto' | 'tilt'
+            let setpointRPM = 3000;  // default setpoint for auto mode
+            let angle = 0;           // arrow rotation angle in degrees
+            let powerOn = true;      // power toggle state
+
+            // Convert 0–100 slider value to 0–6500 RPM
+            function sliderToRPM(value) {
+                return Math.round((value / 100) * 6500);
+            }
+
+            // Convert 0–75° tilt slider value to 0–6500 RPM
+            function tiltToRPM(value) {
+                const angleDeg = Math.min(75, Math.max(0, value));
+                return Math.round((angleDeg / 75) * 6500);
+            }
+
+            // Update target RPM from manual speed slider (if in manual mode)
+            function updateFromSlider() {
+                if (mode === 'manual' && powerOn) {
+                    targetRPM = sliderToRPM(Number(slider.value));
+                }
+            }
+
+            // Listener for manual speed slider
+            slider.addEventListener('input', updateFromSlider);
+
+            // Listener for tilt slider (used only in tilt mode)
+            if (tiltSlider) {
+                tiltSlider.addEventListener('input', () => {
+                    if (mode === 'tilt' && powerOn) {
+                        targetRPM = tiltToRPM(Number(tiltSlider.value));
+                    }
+                });
+            }
+
+            // Mode buttons: switch between Manual / Auto / Tilt
+            modeButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Visually mark selected mode
+                    modeButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    mode = btn.dataset.mode; // read data-mode attribute
+
+                    if (!powerOn) return;
+
+                    // Recompute targetRPM when mode changes
+                    if (mode === 'manual') {
+                        targetRPM = sliderToRPM(Number(slider.value));
+                    } else if (mode === 'auto') {
+                        targetRPM = setpointRPM;
+                    } else if (mode === 'tilt') {
+                        targetRPM = tiltToRPM(Number(tiltSlider ? tiltSlider.value : 0));
+                    }
+                });
+            });
+
+            // Direction buttons: choose CW or CCW
+            dirButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    dirButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    direction = btn.dataset.dir === 'cw' ? 1 : -1;
+                });
+            });
+
+            // Adjust the RPM setpoint in Auto mode by +/- delta
+            function updateSetpoint(delta) {
+                setpointRPM = Math.min(6500, Math.max(0, setpointRPM + delta));
+                setpointLabel.textContent = setpointRPM + ' RPM';
+                if (mode === 'auto' && powerOn) {
+                    targetRPM = setpointRPM;
+                }
+            }
+
+            // Setpoint increment / decrement
+            setpointUp.addEventListener('click', () => updateSetpoint(250));
+            setpointDown.addEventListener('click', () => updateSetpoint(-250));
+
+            // Power ON / OFF button behavior
+            powerBtn.addEventListener('click', () => {
+                powerOn = !powerOn;
+
+                if (powerOn) {
+                    powerBtn.textContent = 'ON';
+                    powerBtn.classList.add('active');
+
+                    // Resume appropriate target based on current mode
+                    if (mode === 'manual') {
+                        targetRPM = sliderToRPM(Number(slider.value));
+                    } else if (mode === 'auto') {
+                        targetRPM = setpointRPM;
+                    } else if (mode === 'tilt') {
+                        targetRPM = tiltToRPM(Number(tiltSlider ? tiltSlider.value : 0));
+                    }
+                } else {
+                    powerBtn.textContent = 'OFF';
+                    powerBtn.classList.remove('active');
+
+                    // When powered off, we ramp down toward 0 RPM
+                    targetRPM = 0;
+                }
+            });
+
+            // Main simulation loop: ease currentRPM toward targetRPM and rotate the arrow
+            function step() {
+                // Slower response in auto mode, faster in manual/tilt for a snappier feel
+                const followRate = mode === 'auto' ? 0.06 : 0.12;
+
+                if (!powerOn) {
+                    // When OFF, decay RPM gradually
+                    currentRPM *= 0.90;
+                } else {
+                    // When ON, move toward the target with a simple proportional update
+                    const error = targetRPM - currentRPM;
+                    currentRPM += error * followRate;
+                }
+
+                // Avoid tiny floating-point flicker around zero
+                if (Math.abs(currentRPM) < 1) currentRPM = 0;
+
+                // Update numeric RPM display
+                rpmDisplay.textContent = Math.round(currentRPM);
+
+                // Update arrow angle based on current RPM and direction
+                angle += direction * (currentRPM / 60); // arbitrary scaling for visual spin
+                // Note: transform uses rotation plus a small radial offset
+                arrow.style.transform = `rotate(${angle}deg) translateX(18px)`;
+
+                // Schedule the next frame
+                requestAnimationFrame(step);
+            }
+
+            // Initial setup: sync targetRPM and setpoint label before starting loop
+            targetRPM = sliderToRPM(Number(slider.value));
+            setpointLabel.textContent = setpointRPM + ' RPM';
+
+            // Start animation loop
+            requestAnimationFrame(step);
+        })();
+    </script>
+</body>
+</html>

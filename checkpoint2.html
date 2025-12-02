@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkpoint 2 – PARMCO System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">PARMCO System</a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="checkpoint1.html">Checkpoint 1</a></li>
+                <li><a href="checkpoint2.html" class="active">Checkpoint 2</a></li>
+                <li><a href="checkpoint3.html">Checkpoint 3</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- GRADE SUMMARY -->
+        <section class="card card-visible">
+            <h2>📊 Checkpoint 2 – Grade Summary</h2>
+            <p>
+                <strong>Final Grade:</strong>
+                <span style="color: var(--uga-red); font-weight: 700;">91%</span>
+            </p>
+
+            <h3>Rubric Breakdown & Feedback</h3>
+            <ul>
+                <li><strong>In-Class Checkpoint (30%)</strong> — Scored <strong>1.0</strong></li>
+                <li>
+                    <strong>Motor Schematic (AI) and Document (20%)</strong> — Scored <strong>0.85</strong><br>
+                    <em>Feedback:</em>
+                    <span style="color:#ccc;">
+                        Names on pins are hard to read because of wires; MOSFET symbol can be improved.
+                    </span>
+                </li>
+                <li><strong>AI-Generated Documentation (20%)</strong> — Scored <strong>0.9</strong></li>
+                <li><strong>Code (10%)</strong> — Scored <strong>1.0</strong></li>
+                <li><strong>Human-Written Documentation (15%)</strong> — Scored <strong>0.9</strong></li>
+                <li>
+                    <strong>Professionalism (5%)</strong> — Scored <strong>0.0</strong><br>
+                    <em>Feedback:</em>
+                    <span style="color:#ccc;">No references were included.</span>
+                </li>
+            </ul>
+
+            <p style="margin-top:1rem; font-style:italic;">
+                (Values taken directly from the instructor rubric.)  
+            </p>
+        </section>
+
+        <!-- CHECKPOINT 2 CONTENT -->
+        <section class="card card-visible">
+            <!-- Buttons row -->
+            <div class="cp-buttons">
+                <a href="index.html" class="return-btn">← Return to Homepage</a>
+
+                <!-- TODO: replace href with your actual CP2 Google Drive PDF link -->
+                <a href="https://drive.google.com/file/d/1vMAJ0sJnWRC-gCXUTyTFPTWNZzxWVxCO/view?usp=sharing"
+                   class="return-btn"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    📄 View CP2 PDF
+                </a>
+            </div>
+
+            <br>
+
+            <h2>📄 Checkpoint 2 Submission</h2>
+
+            <h3>Team & Roles</h3>
+            <p>
+                <strong>Group 3:</strong> Drew Lowry &amp; Jordan Howard 
+                <p>Date Submitted: 10/30/2025</p>
+            </p>
+
+            <span class="small-break"></span>
+
+            <ul>
+                <li><strong>Drew:</strong> iOS app interface and Bluetooth connection</li>
+                <li><strong>Jordan:</strong> Hardware implementation and keyboard-based motor control</li>
+                <li>Both team members contributed equally to the documentation.</li>
+            </ul>
+
+
+
+            <h3>1. Simple User Interface (iOS App)</h3>
+            <p>
+                Using primarily <strong>Google Gemini</strong>, the team created the initial structure for the
+                PARMCO control app. On launch, the app presents a Bluetooth connection screen, where the
+                user will eventually connect to the Raspberry Pi 4. Once connected, the main control view
+                allows the user to:
+            </p>
+            <ul class="bullet-list">
+                <li>- Adjust motor speed using a circular slider (which also changes color with speed)</li>
+                <li>- Monitor RPM via a gauge at the top of the screen</li>
+                <li>- Switch between control modes and directions</li>
+                <li>- Access a settings page with toggles for haptics, sound, and appearance</li>
+            </ul>
+
+
+            <h3>2. Bluetooth Connection</h3>
+            <p>
+                The team established a secure Bluetooth Low Energy (BLE) connection between the iPhone
+                and the Raspberry Pi 4 via the PARMCO app. The app scans for BLE devices and lists
+                available peripherals, including the Pi when the BLE advertiser is running. The user can then
+                select the Raspberry Pi from the list and initiate a connection. :contentReference[oaicite:3]{index=3}
+            </p>
+            <p>
+                <em>Figure 2</em> in the report shows the Bluetooth scan screen with a list of discovered
+                devices and connection controls.
+            </p>
+
+            <h3>3. Keyboard Motor Control</h3>
+            <p>
+                In addition to mobile control, the team implemented a <strong>keyboard-driven interface</strong>
+                to control the motor directly from the Raspberry Pi. The keyboard mapping is:
+            </p>
+            <span class="small-break"></span>
+
+            <ul class="bullet-list">
+                <li><strong>W</strong> – Increase speed (increase PWM duty cycle)</li>
+                <li><strong>S</strong> – Decrease speed (decrease PWM duty cycle)</li>
+                <li><strong>A</strong> – Set motor rotation to counterclockwise</li>
+                <li><strong>D</strong> – Set motor rotation to clockwise</li>
+                <li><strong>Spacebar</strong> – Start/stop the motor</li>
+                <li><strong>Q</strong> – Quit the program safely</li>
+            </ul>
+
+            <span class="small-break"></span>
+            <p>
+                To validate speed control, the team compared maximum measured pulses with those from
+                the Embedded Systems I project. The previous Python-based solution achieved roughly
+                <strong>240 pulses</strong>, whereas the new C-based implementation reached about
+                <strong>320 pulses</strong> at the same frequency and duty cycle. This difference reflects
+                C’s lower runtime overhead compared to Python and confirms that the C implementation
+                is capturing more pulses per second and driving the motor correctly. 
+            </p>
+
+
+            <h3>4. Updated Motor Schematic</h3>
+            <p>
+                The motor control schematic was significantly updated from Checkpoint 1. The new design
+                adds an <strong>H-bridge (L293D)</strong> for bidirectional control and an <strong>IR sensor</strong> for
+                measuring RPM. 
+            </p>
+
+            <h4>Key Changes from CP1</h4>
+            <ul>
+                <li>
+                    Previous CP1 circuit feedback noted that the motor would always be on because it was
+                    directly tied to 12 V and ground.
+                </li>
+                <li>
+                    The updated CP2 schematic routes motor power through an H-bridge controlled by
+                    Raspberry Pi GPIO pins, allowing full on/off and direction control.
+                </li>
+                <li>
+                    An IR sensor module is added to measure RPM via a reflective sensor mounted near the
+                    fan blades.
+                </li>
+            </ul>
+            <img src="website_images\checkpoint2_schematic.png" 
+                alt="Updated Checkpoint 2 Circuit Schematic" 
+                class="expandable-image"
+                onclick="openImageModal(this)">
+
+            <p class="center-caption">
+                Figure 1. Updated Checkpoint 2 Circuit Schematic. 
+            </p>
+
+
+            <br>
+
+            <h4>Parts List (CP2)</h4>
+            <ul>
+                <li>1× IR Sensor Module</li>
+                <li>1× H-Bridge (L293D)</li>
+                <li>1× 12 V DC brushed motor</li>
+                <li>1× Raspberry Pi 4 (PWM pin, 2 output pins, 1 input pin)</li>
+                <li>1× N-channel MOSFET (IRFZ34N)</li>
+                <li>1× Dual-channel power supply (12 V and 5 V)</li>
+                <li>15–30 jumper wires</li>
+            </ul>
+            <p style="font-size:0.9rem; color:#bbb;">
+                Parts list summarized from the “Updated Motor Schematic” section of the CP2 document.
+            </p>
+
+            <br>
+
+            <h4>How the Updated Circuit Works</h4>
+            <p>
+                The <strong>IR sensor</strong> runs at 3.3 V so that its output logic level is safe for a Raspberry Pi GPIO
+                input. It is positioned so that each passing fan blade triggers a pulse, which is then used to
+                compute RPM. 
+            </p>
+
+            <span class="small-break"></span>
+
+            <p>
+                The <strong>Raspberry Pi 4</strong> controls:
+            </p>
+            <ul class="bullet-list">
+                <li>GPIO2 – Clockwise direction</li>
+                <li>GPIO3 – Counterclockwise direction</li>
+                <li>GPIO18 – PWM signal to the H-bridge enable pin</li>
+                <li>An additional GPIO pin – Gate control for the MOSFET supplying 12 V to the H-bridge</li>
+            </ul>
+
+            <span class="small-break"></span>
+
+            <p>
+                The <strong>MOSFET</strong> switches the 12 V supply to the H-bridge’s motor power input (VCC1). When
+                the gate is driven high, the H-bridge receives 12 V and can drive the motor. 
+            </p>
+
+            <span class="small-break"></span>
+
+            <p>
+                The <strong>H-bridge</strong> L293D uses:
+            </p>
+            <ul class="bullet-list">
+                <li>Enable pin driven by the Raspberry Pi PWM (duty cycle → speed)</li>
+                <li>GPIO2 / GPIO3 to select clockwise or counterclockwise rotation</li>
+                <li>VCC1 (12 V) for motor power and VCC2 (5 V) for internal logic</li>
+            </ul>
+
+            <span class="small-break"></span>
+
+            <p>
+                The <strong>motor</strong> direction is determined by the state of GPIO2 and GPIO3:
+            </p>
+            <ul class="bullet-list">
+                <li>LOW / LOW → Motor off</li>
+                <li>HIGH / LOW → Clockwise</li>
+                <li>LOW / HIGH → Counterclockwise</li>
+                <li>HIGH / HIGH → Not used / not configured in code</li>
+            </ul>
+
+
+            <h3>5. AI Interaction Summary</h3>
+            <p>
+                For this checkpoint, AI usage became more complex than in CP1:
+            </p>
+            <ul>
+                <li><strong>Gemini</strong> – Primary tool for Swift iOS app development</li>
+                <li><strong>ChatGPT</strong> – Wrote the final version of the Bluetooth advertiser code</li>
+                <li><strong>Perplexity</strong> – Contributed earlier iterations for keyboard control logic</li>
+                <li><strong>Claude</strong> – Generated the updated circuit schematic, with iterative refinement
+                    using component symbols (e.g., from SnapEDA) and spacing adjustments</li>
+            </ul>
+
+
+        </section>
+    </div>
+
+    <!-- Optional: immediately show cards without scroll observer -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.add('card-visible');
+            });
+        });
+    </script>
+
+    <!-- Open Image -->
+    <script>
+    function openImageModal(img) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        modal.classList.add('active');
+        modalImg.src = img.src;
+        modalImg.alt = img.alt;
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.remove('active');
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeImageModal();
+        }
+    });
+    </script>
+
+    <!-- Modal for expanded image -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="image-modal-close">&times;</span>
+        <img id="modalImage" src="" alt="">
+    </div>
+</body>
+</html>
